@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0437FC2C63F63400D55404 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0437FB2C63F63400D55404 /* CheckOutView.swift */; };
 		3A49C96E2C614C0F00EC2D18 /* CupCakeCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C96D2C614C0F00EC2D18 /* CupCakeCornerApp.swift */; };
 		3A49C9702C614C0F00EC2D18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C96F2C614C0F00EC2D18 /* ContentView.swift */; };
 		3A49C9722C614C1200EC2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A49C9712C614C1200EC2D18 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0437FB2C63F63400D55404 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
 		3A49C96A2C614C0F00EC2D18 /* CupCakeCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CupCakeCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A49C96D2C614C0F00EC2D18 /* CupCakeCornerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupCakeCornerApp.swift; sourceTree = "<group>"; };
 		3A49C96F2C614C0F00EC2D18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				3A49C96D2C614C0F00EC2D18 /* CupCakeCornerApp.swift */,
 				3A49C96F2C614C0F00EC2D18 /* ContentView.swift */,
 				7723B8072C63D0BC00BA5561 /* AddressView.swift */,
+				3A0437FB2C63F63400D55404 /* CheckOutView.swift */,
 				7723B8052C63CA9700BA5561 /* Order.swift */,
 				3A49C9712C614C1200EC2D18 /* Assets.xcassets */,
 				3A49C9732C614C1200EC2D18 /* Preview Content */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7723B8062C63CA9700BA5561 /* Order.swift in Sources */,
+				3A0437FC2C63F63400D55404 /* CheckOutView.swift in Sources */,
 				7723B8082C63D0BC00BA5561 /* AddressView.swift in Sources */,
 				3A49C9702C614C0F00EC2D18 /* ContentView.swift in Sources */,
 				3A49C96E2C614C0F00EC2D18 /* CupCakeCornerApp.swift in Sources */,

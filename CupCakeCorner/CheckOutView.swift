@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CheckOutView: View {
     var order: Order
+    
+    @State private var orderMessage = ""
+    @State private var showStatus = false
+    
     var body: some View {
         ScrollView{
             VStack{
@@ -25,7 +29,10 @@ struct CheckOutView: View {
                     .font(.title)
                 
                 Button("Place Order"){
-                    print("order placed")
+                    Task{
+                       await placeOrder()
+                        print("hello")
+                    }
                 }
                 .padding()
             }
@@ -33,7 +40,31 @@ struct CheckOutView: View {
         .navigationTitle("Check out")
         .navigationBarTitleDisplayMode(.inline)
         .scrollBounceBehavior(.basedOnSize)
-        
+        .alert("Alert", isPresented: $showStatus){
+            Button("OK"){}
+        } message: {
+            Text("\(orderMessage)")
+        }
+    }
+    
+    func placeOrder() async{
+        guard let encodedData = try? JSONEncoder().encode(order) else{
+            print("Unable to encode")
+            return
+        }
+        let url = URL(string: "https://reqres.in/api/cupcakes")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpMethod = "POST"
+        do{
+            let (data, _) = try await URLSession.shared.upload(for: urlRequest, from: encodedData)
+            let decodedData = try JSONDecoder().decode(Order.self, from: data)
+            orderMessage = "\(decodedData.quanity) x \(Order.types[order.type]) is on the way.."
+            showStatus = true
+            print("done")
+        }catch{
+            print(error.localizedDescription)
+        }
     }
 }
 

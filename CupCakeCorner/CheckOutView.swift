@@ -31,7 +31,6 @@ struct CheckOutView: View {
                 Button("Place Order"){
                     Task{
                        await placeOrder()
-                        print("hello")
                     }
                 }
                 .padding()
@@ -59,10 +58,13 @@ struct CheckOutView: View {
         do{
             let (data, _) = try await URLSession.shared.upload(for: urlRequest, from: encodedData)
             let decodedData = try JSONDecoder().decode(Order.self, from: data)
+            print(String(decoding: data, as: UTF8.self))
             orderMessage = "\(decodedData.quanity) x \(Order.types[order.type]) is on the way.."
             showStatus = true
             print("done")
         }catch{
+            showStatus = true
+            orderMessage = "\(error.localizedDescription)"
             print(error.localizedDescription)
         }
     }

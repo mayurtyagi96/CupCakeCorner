@@ -15,10 +15,7 @@ class Order: Codable{
         case _specialRequestEnabled = "specialRequestEnabled"
         case _extraFrostings = "extraFrostings"
         case _addSprinkles = "addSprinkles"
-        case _name = "name"
-        case _streetAddress = "streetAddress"
-        case _city = "city"
-        case _zipCode = "zipCode"
+        case _address = "address"
     }
     
     static var types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
@@ -36,18 +33,19 @@ class Order: Codable{
     var extraFrostings = false
     var addSprinkles = false
     
-    var name = ""
-    var streetAddress = ""
-    var city = ""
-    var zipCode = ""
-    
+    var address: Address{
+        didSet{
+            let data = try? JSONEncoder().encode(address)
+            UserDefaults.standard.set(data, forKey: "address")
+        }
+    }
+
     var hasValidAddress: Bool{
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zipCode.isEmpty{
+        if address.name.trimed().isEmpty || address.streetAddress.trimed().isEmpty || address.city.trimed().isEmpty || address.zipCode.trimed().isEmpty{
             return false
         }
         return true
     }
-    
     var cost: Decimal{
         //  base price
         var cost = Decimal(quanity) * 2
@@ -64,5 +62,20 @@ class Order: Codable{
         
         return cost
     }
-    
+    init(){
+        if let data = UserDefaults.standard.data(forKey: "address"){
+            if let addrsss = try? JSONDecoder().decode(Address.self, from: data){
+                self.address = addrsss
+                return
+            }
+        }
+        self.address = Address()
+    }
+}
+
+struct Address: Codable{
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zipCode = ""
 }
